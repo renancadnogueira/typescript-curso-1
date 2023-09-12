@@ -2,7 +2,7 @@ import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
 
 export class NegociacaoController {
-    private inputData: HTMLInputElement;
+    private inputData: HTMLInputElement; //precisamos definir o tipo dessa classe, caso não seja nada definido, será definido o tipo any.
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
     private negociacoes = new Negociacoes();
@@ -13,7 +13,7 @@ export class NegociacaoController {
         this.inputValor = document.querySelector('#valor');
     }
 
-    adiciona(): void {
+    adiciona(): void { //tipo de retorno do método, quando não retorno nada é void
         const negociacao = this.criaNegociacao();
         negociacao.data.setDate(12);
         this.negociacoes.adiciona(negociacao);
