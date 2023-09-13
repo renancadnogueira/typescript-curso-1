@@ -15,19 +15,21 @@ export class NegociacaoController {
         this.inputData = document.querySelector('#data');
         this.inputQuantidade = document.querySelector('#quantidade');
         this.inputValor = document.querySelector('#valor');
-        this.mensagemView.update('Negociação adicionada com sucesso!');
         this.negociacoesView.update(this.negociacoes); 
     }
 
-    adiciona(): void { //tipo de retorno do método, quando não retorno nada é void
+    public adiciona(): void { //tipo de retorno do método, quando não retorno nada é void
         const negociacao = this.criaNegociacao();
-        this.negociacoes.adiciona(negociacao);
-        this.negociacoesView.update(this.negociacoes); //atualizando a view.
-        this.mensagemView.update('Negociação adicionada com sucesso!');
-        this.limparFormulario();
+        if (negociacao.data.getDay() > 0 && negociacao.data.getDay() < 6) {
+            this.negociacoes.adiciona(negociacao);
+            this.limparFormulario();
+            this.atualizaView();
+        } else {
+            this.mensagemView.update('Apenas negociações em dias úteis são aceitas! ')
+        }
     }
 
-    criaNegociacao(): Negociacao {
+    private criaNegociacao(): Negociacao {
         const exp = /-/g;
         const date = new Date(this.inputData.value.replace(exp, ','));
         const quantidade = parseInt(this.inputQuantidade.value);
@@ -35,10 +37,15 @@ export class NegociacaoController {
         return new Negociacao(date, quantidade, valor);
     }
 
-    limparFormulario(): void {
+    private limparFormulario(): void {
         this.inputData.value = '';
         this.inputQuantidade.value = '';
         this.inputValor.value = '';
         this.inputData.focus();
+    }
+
+    private atualizaView(): void {
+        this.negociacoesView.update(this.negociacoes); //atualizando a view.
+        this.mensagemView.update('Negociação adicionada com sucesso!');
     }
 }
