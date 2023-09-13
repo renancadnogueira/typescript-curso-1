@@ -1,4 +1,4 @@
-export class View<T> { //Tipo genérico T.
+export abstract class View<T> { //Tipo genérico T. //Uma classe abstrata não pode criar uma instância dela
 
     protected elemento: HTMLElement;
 
@@ -11,7 +11,5 @@ export class View<T> { //Tipo genérico T.
         this.elemento.innerHTML = template;
     }
 
-    template(model: T): string {
-        throw Error('Classe filha precisa implementar o método template')
-    }
+    abstract template(model: T): string;
 }
