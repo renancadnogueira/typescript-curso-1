@@ -15,7 +15,6 @@ export class NegociacaoController {
 
     adiciona(): void { //tipo de retorno do método, quando não retorno nada é void
         const negociacao = this.criaNegociacao();
-        negociacao.data.setDate(12);
         this.negociacoes.adiciona(negociacao);
         console.log(this.negociacoes.lista());
         this.limparFormulario();
