@@ -33,7 +33,7 @@ export class NegociacaoController {
         this.inputData.focus();
     }
     atualizaView() {
-        this.negociacoesView.update(this.negociacoes); //atualizando a view.
+        this.negociacoesView.update(this.negociacoes);
         this.mensagemView.update('Negociação adicionada com sucesso!');
     }
 }

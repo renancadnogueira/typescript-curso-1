@@ -4,7 +4,12 @@ export abstract class View<T> { //Tipo genérico T. //Uma classe abstrata não p
     private escapar = false;
 
     constructor(seletor: string, escapar?: boolean) { // o ? é um método para usar um método de scape; Parametro opcional
-        this.elemento = document.querySelector(seletor);
+        const elemento = document.querySelector(seletor);
+        if (elemento) {
+            this.elemento = elemento as HTMLInputElement;
+        } else {
+            throw Error (`Seletor ${seletor} não existe no DOM!`)
+        }
         if (escapar) {
             this.escapar = escapar;
         }

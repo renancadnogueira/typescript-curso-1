@@ -1,6 +1,6 @@
 export class Negociacoes {
     constructor() {
-        this.negociacoes = []; //Aqui não definimos o método readonly porque ao colocar o método push na linha 7, não conseguíriamos realizar o readonly.
+        this.negociacoes = [];
     }
     adiciona(negociacao) {
         this.negociacoes.push(negociacao);
