@@ -1,13 +1,20 @@
 export abstract class View<T> { //Tipo genérico T. //Uma classe abstrata não pode criar uma instância dela
 
     protected elemento: HTMLElement;
+    private escapar = false;
 
-    constructor(seletor: string) {
-        this.elemento = document.querySelector(seletor)
+    constructor(seletor: string, escapar?: boolean) {
+        this.elemento = document.querySelector(seletor);
+        if (escapar) {
+            this.escapar = escapar;
+        }
     }
 
     public update(model: T): void {
-        const template = this.template(model);
+        let template = this.template(model);
+        if (this.escapar) {
+            template = template.replace(/<script>[\s\S]*?<\/script>/, '')
+        }
         this.elemento.innerHTML = template;
     }
 
