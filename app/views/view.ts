@@ -3,7 +3,7 @@ export abstract class View<T> { //Tipo genérico T. //Uma classe abstrata não p
     protected elemento: HTMLElement;
     private escapar = false;
 
-    constructor(seletor: string, escapar?: boolean) {
+    constructor(seletor: string, escapar?: boolean) { // o ? é um método para usar um método de scape; Parametro opcional
         this.elemento = document.querySelector(seletor);
         if (escapar) {
             this.escapar = escapar;
